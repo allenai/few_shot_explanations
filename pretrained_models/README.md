@@ -14,9 +14,9 @@ average reported in the paper. The checkpoints can be downloaded here:
 
 #### NLI
 
-- t5-large (2.7GB): 
-- t5-3b (11GB): 
-- t5-11b (21GB):
+- t5-large (2.7GB) [download](https://storage.googleapis.com/ai2-mosaic-public/projects/few-shot-explanations/pretrained_models/nli/valloss%3D0.25146~model%3Dt5-large~lr%3D0.0001~seed%3D1~labelagg%3D0_just_weights.pt)
+- t5-3b (11GB) [download](https://storage.googleapis.com/ai2-mosaic-public/projects/few-shot-explanations/pretrained_models/nli/valloss%3D0.24209~model%3Dt5-3b~lr%3D0.0001~seed%3D1~labelagg%3D0_just_weights.pt)
+- t5-11b (21GB) [download](https://storage.googleapis.com/ai2-mosaic-public/projects/few-shot-explanations/pretrained_models/nli/esnli_deepspeed_valloss%3D0.00000~model%3Dt5-11b~lr%3D0.00001~seed%3D1~labelagg%3D0.pt)
 
 Performance of these checkpoints, in comparsion to reported explanation only baseline from paper.
 ```
@@ -45,12 +45,11 @@ large-AP       47.64  46.52   46.52
 expl-only-AP   30.62  30.61   25.92
 ```
 
-
 #### CommonsenseQA:
 
-- t5-large (2.7GB): 
-- t5-3b (11GB): 
-- t5-11b (21GB):
+- t5-large (2.7GB) [download](https://storage.googleapis.com/ai2-mosaic-public/projects/few-shot-explanations/pretrained_models/commonsense_qa/valloss%3D0.28665~model%3Dt5-large~lr%3D0.0001~seed%3D1~labelagg%3D0_just_weights.pt)
+- t5-3b (11GB) [download](https://storage.googleapis.com/ai2-mosaic-public/projects/few-shot-explanations/pretrained_models/commonsense_qa/valloss%3D0.28925~model%3Dt5-3b~lr%3D0.0001~seed%3D1~labelagg%3D0_just_weights.pt)
+- t5-11b (21GB) [download](https://storage.googleapis.com/ai2-mosaic-public/projects/few-shot-explanations/pretrained_models/commonsense_qa/cose_deepspeed_valloss%3D0.00000~model%3Dt5-11b~lr%3D0.00001~seed%3D1~labelagg%3D0.pt)
 
 Performance of these checkpoints, in comparsion to reported explanation only baseline from paper.
 ```
@@ -82,8 +81,24 @@ expl-only-AP   41.1   54.1
 ## How do I use the checkpoints?
 
 If you download the above checkpoints to this directory, you can then use the two included scripts: `nli_demo.py` and `csqa_demo.py`.
-
-For example:
+They each include a main function that calls the models, e.g., for NLI:
 
 ```
+scores = get_scores(
+    ['If you feel like everything is spinning while climbing you are experiencing what? answer: vertigo. explanation: Vertigo is often experienced while climbing or at heights.',
+     'Where do you get clothes in a shopping bag? answer: retail store. explanation: For any large item where convenience is beneficial, one might go to a retail store, either a regular one or a big-box store like walmart.',
+     'Where should a cat be in a house? answer: floor. explanation: A cat should be on the floor, not on a rug.'],
+    args.model_type,
+    device=args.device,
+    batch_size=args.batch_size,
+    verbose=False)
 ```
+
+#### Requirements
+
+Are listed in requirements.txt, but include:
+
+- pytorch
+- transformers
+- tqdm
+- numpy

@@ -172,6 +172,7 @@ def main():
         batch_size=args.batch_size,
         device=args.device,
         verbose=False)
+    print(scores)
 
     # t5-large makes some mistakes :D
     # [0.6507977247238159, 0.639464795589447, 0.0361432284116745]
