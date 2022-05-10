@@ -112,5 +112,3 @@ Are listed in requirements.txt, but include:
 - transformers
 - tqdm
 - numpy
-
-The inference code isn't set up to 
