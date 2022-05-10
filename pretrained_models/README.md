@@ -94,6 +94,16 @@ scores = get_scores(
     verbose=False)
 ```
 
+and if you want to score these explanations with a model, you can do:
+
+```
+python nli_demo.py 11b --batch_size 1
+```
+
+For 11b, you can run on a single GPU, but it will need ~48GB of
+memory, and is limited to batch size 1. MultiGPU support can be added
+if there's a desire for it.
+
 #### Requirements
 
 Are listed in requirements.txt, but include:
@@ -102,3 +112,5 @@ Are listed in requirements.txt, but include:
 - transformers
 - tqdm
 - numpy
+
+The inference code isn't set up to 
