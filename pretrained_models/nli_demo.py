@@ -1,6 +1,14 @@
 '''
 A (hopefully) Simple API for serving explanation score requests.
 
+question = 'premise: ' + item["Input.premise"].lstrip().rstrip() + ' ' + 'hypothesis: ' + item['Input.hypothesis'].lstrip().rstrip()
+if item["Input.gold_label"] == 'TRUE':
+    gold_label = 'entailment'
+elif item["Input.gold_label"] == 'FALSE':
+    gold_label = 'contradiction'
+elif item["Input.gold_label"] == 'neither':
+    gold_label = 'neutral'
+
 input_string = (
     f"{question} answer: {gold_label}. "
     + f" explanation: {abstr_expl}."
@@ -8,9 +16,10 @@ input_string = (
 
 here are some example input strings:
 
-If you feel like everything is spinning while climbing you are experiencing what? answer: vertigo. explanation: Vertigo is often experienced while climbing or at heights.
-Where do you get clothes in a shopping bag? answer: retail store. explanation: For any large item where convenience is beneficial, one might go to a retail store, either a regular one or a big-box store like walmart.
-Where should a cat be in a house? answer: floor. explanation: A cat should be on the floor, not on a rug.
+premise: A man getting a tattoo on his back. hypothesis: A woman is getting a tattoo. answer: contradiction. explanation: Because the tattoo artist is a man, the person getting the tattoo is not a woman.
+premise: Woman is making a half smile at the camera. hypothesis: woman smiling answer: entailment. explanation: Many people do not find smiling to the camera appropriate or fun, so not everyone will be smiling but some will. A person may not make a smile or have a full smile, in which case it can still be true.
+premise: some people sitting around a table, one yawning. hypothesis: A person at the table is yawning because he stayed awake all night watching Netflix. answer: neutral. explanation: Just because someone is sitting around a table does not mean they stayed awake all night
+watching Netflix.
 '''
 
 import argparse
@@ -23,26 +32,26 @@ import numpy as np
 _model, _tokenizer = None, None
 
 model2url = {
-    'large': 'https://storage.googleapis.com/ai2-mosaic-public/projects/few-shot-explanations/pretrained_models/commonsense_qa/valloss%3D0.28665~model%3Dt5-large~lr%3D0.0001~seed%3D1~labelagg%3D0_just_weights.pt',
-    '3b': 'https://storage.googleapis.com/ai2-mosaic-public/projects/few-shot-explanations/pretrained_models/commonsense_qa/valloss%3D0.28925~model%3Dt5-3b~lr%3D0.0001~seed%3D1~labelagg%3D0_just_weights.pt',
-    '11b': 'https://storage.googleapis.com/ai2-mosaic-public/projects/few-shot-explanations/pretrained_models/commonsense_qa/cose_deepspeed_valloss%3D0.00000~model%3Dt5-11b~lr%3D0.00001~seed%3D1~labelagg%3D0.pt',
+    'large': 'https://storage.googleapis.com/ai2-mosaic-public/projects/few-shot-explanations/pretrained_models/nli/valloss%3D0.25146~model%3Dt5-large~lr%3D0.0001~seed%3D1~labelagg%3D0_just_weights.pt',
+    '3b': 'https://storage.googleapis.com/ai2-mosaic-public/projects/few-shot-explanations/pretrained_models/nli/valloss%3D0.24209~model%3Dt5-3b~lr%3D0.0001~seed%3D1~labelagg%3D0_just_weights.pt',
+    '11b': 'https://storage.googleapis.com/ai2-mosaic-public/projects/few-shot-explanations/pretrained_models/nli/esnli_deepspeed_valloss%3D0.00000~model%3Dt5-11b~lr%3D0.00001~seed%3D1~labelagg%3D0.pt'
 }
+
 
 def get_model(model_type, device=None):
     global _model, model2url
     if model_type not in {'11b', '3b', 'large'}:
-        raise NotImplementedError('{} is not a valid model please use "3b" or "large"'.format(model_type))
+        raise NotImplementedError('{} is not a valid model please use "3b" or "large" or "11b"'.format(model_type))
 
     if _model is None:
         hf_model_name = 't5-' + model_type
         print('Loading model: this will run only once.')
-
         if model_type == 'large':
-            model_path = 'valloss=0.28665~model=t5-large~lr=0.0001~seed=1~labelagg=0_just_weights.pt'
+            model_path = 'valloss=0.25146~model=t5-large~lr=0.0001~seed=1~labelagg=0_just_weights.pt'
         elif model_type == '3b':
-            model_path = 'valloss=0.28925~model=t5-3b~lr=0.0001~seed=1~labelagg=0_just_weights.pt'
+            model_path = 'valloss=0.24209~model=t5-3b~lr=0.0001~seed=1~labelagg=0_just_weights.pt'
         elif model_type == '11b':
-            model_path = 'cose_deepspeed_valloss=0.00000~model=t5-11b~lr=0.00001~seed=1~labelagg=0.pt'
+            model_path = 'esnli_deepspeed_valloss=0.00000~model=t5-11b~lr=0.00001~seed=1~labelagg=0.pt'
 
         if not os.path.exists(model_path):
             print('Please download weights for {} model and put in current directory.'.format(model_path))
@@ -156,23 +165,22 @@ def main():
     np.random.seed(1)
 
     scores = get_scores(
-        ['If you feel like everything is spinning while climbing you are experiencing what? answer: vertigo. explanation: Vertigo is often experienced while climbing or at heights.',
-         'Where do you get clothes in a shopping bag? answer: retail store. explanation: For any large item where convenience is beneficial, one might go to a retail store, either a regular one or a big-box store like walmart.',
-         'Where should a cat be in a house? answer: floor. explanation: A cat should be on the floor, not on a rug.'],
+        ['premise: A man getting a tattoo on his back. hypothesis: A woman is getting a tattoo. answer: contradiction. explanation: Because the tattoo artist is a man, the person getting the tattoo is not a woman.',
+         'premise: A man getting a tattoo on his back. hypothesis: A woman is getting a tattoo. answer: contradiction. explanation: Because the person getting a tattoo is a man, the person getting the tattoo is not a woman.',
+         'premise: A man getting a tattoo on his back. hypothesis: A woman is getting a tattoo. answer: contradiction. explanation: Because a woman is giving the tattoo, the person getting the tattoo is a woman.',],
         args.model_type,
-        device=args.device,
         batch_size=args.batch_size,
+        device=args.device,
         verbose=False)
-    print(scores)
 
-    # t5-large:
-    # [0.8819078803062439, 0.1019817441701889, 0.44061794877052307]
+    # t5-large makes some mistakes :D
+    # [0.6507977247238159, 0.639464795589447, 0.0361432284116745]
 
-    # t5-3b:
-    # [0.7853091955184937, 0.11382164061069489, 0.5468584299087524]
+    # t5-3b correctly predicts:
+    # [0.04668688401579857, 0.650340735912323, 0.04666680842638016]
 
     # t5-11b:
-    # [0.8240450024604797, 0.047063715755939484, 0.20420850813388824]
+    # [0.07693258672952652, 0.9653348326683044, 0.006359882187098265]
 
 
 if __name__ == '__main__':
