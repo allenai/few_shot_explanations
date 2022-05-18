@@ -1,0 +1,1 @@
+We deployed this template 3 times as 3 separate HITs each with a different question instance, requiring workers to complete all 3 to be qualified. This could alternatively be converted into one HIT with 3 questions using the existing template.

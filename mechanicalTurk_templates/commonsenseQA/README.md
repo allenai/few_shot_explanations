@@ -1,0 +1,1 @@
+The singular acceptability template is used for collecting acceptability annotations for single explanations (e.g., the datasets). The main acceptability template is used for collecting annotations for 5 different explanations for the same instance (e.g., for the filter model).

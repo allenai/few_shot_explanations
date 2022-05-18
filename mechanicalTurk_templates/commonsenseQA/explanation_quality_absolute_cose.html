@@ -1,0 +1,840 @@
+<html lang="en">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv='Content-Type' content='text/html; charset=UTF-8'/>
+    <script type='text/javascript' src='https://s3.amazonaws.com/mturk-public/externalHIT_v1.js'></script>
+
+    <!-- BOOTSTRAP CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> 
+
+    <!-- HITPUB CSS -->
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i" rel="stylesheet">
+    <style id="hitpub_css">
+        /***********************************************
+        MOSAIC BOOSTRAP OVERWRITES
+        ***********************************************/
+        #hitinfo .card {
+            border-radius: 0;
+        }
+        #hitinfo button.btn-link {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        #hitinfo button.btn-link:hover {
+            text-decoration: none;
+        }
+        #hit ul.question-choice {
+            list-style-type: none;
+        }
+
+        /***********************************************
+        MOSAIC GENERAL STYLING
+        ***********************************************/
+        body {
+            font-family: "Open Sans", "Roboto", sans-serif;
+            line-height: 1.25;
+        }
+        textarea#feedback {
+            width: 100%
+        }
+        input#submitButton {
+            margin: auto;
+            display: block;
+            background-color: #2172a4;
+            color: #fff;
+            font-size: 1.125rem;
+            padding: .5rem 1rem;
+            cursor: pointer;
+            border-radius: 1rem;
+        }
+        input#submitButton:hover {
+            background-color: #06486F;
+        }
+
+        input[type="radio"] {
+            cursor: pointer;
+        }
+
+        div.goal-category {
+            border-bottom: solid 1px #ccc;
+            padding: 1rem 1rem;
+        }
+
+        li {
+            margin:0.6em;
+        }
+
+        table {
+            width: 80%;
+            margin: 5px;
+        }
+
+        tr {
+            border:1px solid #ccc;
+        }
+
+        th {
+            width:20%;
+            background-color:#fff;
+            font-weight:normal;
+            text-align: center;
+            padding:0.5em;
+        }
+
+
+        td {
+            padding-left:20px;
+            padding-right:10px;
+        }
+
+
+
+
+        /***********************************************
+        HIT CUSTOM GENERAL STYLING
+        ***********************************************/
+        div.card-header {
+            background-color: #06486F;
+        }
+        div.card-header h5 {
+            color: #fff !important;
+        }
+
+
+        .question-choice-container label.btn {
+            background-color: #eee;
+            border: #ccc 1px solid;
+            margin-left: 0 !important;
+            color: black;
+        }
+
+
+        .legend {
+            margin-top: .33rem;
+            font-weight: normal;
+            padding-left: 40px;
+        }
+        .legend .label{
+            font-style: italic;
+        }
+
+        .emphasize {
+            font-weight: bold;
+            color: black;
+            font-style: italic;
+        }
+
+        .btn-group-container {
+            align:left;
+            padding:0;
+        }
+
+        .example {
+            pointer-events:none;
+        }
+
+        .title {
+            font-style: italic;
+        }
+
+        .entity {
+            color: blue;
+            font-weight: bold;
+        }
+
+        .use {
+            color: purple;
+            font-weight: bold;
+        }
+
+        .btn-group-xs > .btn, .btn-xs {
+            padding: .4rem .4rem;
+            font-size: .8rem;
+            line-height: 1.2;
+            border-radius: .2rem;
+        }
+
+        .card-body {
+            background-color:#fbfbfb;
+        }
+
+        .concept_a {
+            color: #0072B2;
+            font-weight: bold;
+            font-style: italic;
+        }
+
+        .concept_b {
+            color: #D55E00;
+            font-weight: bold;
+            font-style: italic;
+        }
+
+        .concept_c {
+            color: #aa00d5;
+            font-weight: bold;
+            font-style: italic;
+        }
+
+        .concept_d {
+            color: #008d4b;
+            font-weight: bold;
+            font-style: italic;
+        }
+
+        .sm-bold {
+            font-weight:bold;
+            font-style: italic;
+            font-size: 80%;
+        }
+
+        .partButton {
+            margin: auto;
+            display: block;
+            background-color: #2172a4;
+            color: #fff;
+            font-size: 1.125rem;
+            padding: .5rem 1rem;
+            cursor: pointer;
+            border-radius: 1rem;
+        }
+
+        label[for="2"]:hover, label[for="2"].active {
+            background-color:  #02523C !important;
+            color: white;
+        }
+        label[for="1"]:hover, label[for="1"].active {
+            background-color: #047D5C !important;
+            color: white;
+        }
+
+        label[for="0"]:hover, label[for="0"].active {
+            background-color: rgb(212, 216, 1) !important;
+            color: white;
+        }
+        label[for="-1"]:hover, label[for="-1"].active {
+            background-color: #c20000 !important;
+            color: white;
+        }
+
+        label[for="-2"]:hover, label[for="-2"].active {
+            background-color: rgb(136, 0, 0) !important;
+            color: white;
+        }
+
+        label[for="-9"]:hover, label[for="-9"].active {
+            background-color: rgb(73, 73, 73) !important;
+            color: white;
+        }
+
+        .negOne-background {background-color:#c20000;}
+        .negTwo-background {background-color:rgb(136, 0, 0);}
+        .zero-background {background-color:rgb(212, 216, 1);}
+        .one-background {background-color:#047D5C;}
+        .negNine-background {background-color:rgb(73, 73, 73);}
+
+    </style>
+
+    <!-- HIT START -->
+    <div id="hit" class="container">
+
+        <!-- ACCORDION START -->
+        <div class="col-12 accordion" id="hitinfo">
+
+            <!-- INSTRUCTIONS START -->
+            <div class="card">
+                <div class="card-header" id="instructionsHeading">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#instructions" aria-expanded="true" aria-controls="instructions">
+                            Instructions (click to expand/collapse)
+                        </button>
+                    </h5>
+                </div>
+                <div class="collapse show" id="instructions" aria-labelledby="instructionsHeading" data-parent="#hitinfo">
+                    <div class="card-body">
+                        <div class="card-content">
+                            <p>Thanks for participating in this HIT!</p>
+
+                            <b><p class="mb-2">You will read multiple-choice questions about daily life. For each question, an answer has been selected and a statement explaining the answer has been given.</p></b>
+                            <br>
+                            <div style="border: 5px solid #00aeef; padding: 10px 20px 10px 20px;"><b>Part 1:</b> Please read the <b>statement</b> and answer questions related to its factuality and grammaticality (2 questions).</div><br>
+                            <div style="border: 5px solid #00aeef; padding: 10px 20px 10px 20px;"><b>Part 2:</b> Please read the <b>instance</b> that the statement explains and answer questions about the explanation quality (1-3 questions).</p></div><br>
+                            <p class="mb-2" style="margin-left: 40px"><b>An instance contains 3 parts:</b>
+                            <div class="legend" style="margin-left: 40px">
+                                <div class="row"><span class="label col-3"><span class="concept_a">Question</span></span><span class="col-9">A question such as "If a lantern is not for sale, where is it likely to be?"</span></div>
+                                <div class="row"><span class="label col-3"><span class="concept_c">Answer</span></span><span class="col-9">A selected answer, such as "house" (may or may not be correct).</span></div>
+                                <div class="row"><span class="label col-3"><span class="concept_d">Explanation</span></span><span class="col-9">The <b>statement</b> from Part 1, which explains the <span class="concept_c">Answer</span>.</div>
+                            </div></p>
+
+                            <p class="mb-2" style="margin-left: 40px"><b>[Important!] You may disagree with the <span class="concept_c">Answer</span>, but you should pretend it is correct when judging the <span class="concept_d">Explanation</span>.</b></p>
+                            <p class="mb-2" style="margin-left: 40px"><b>[Important!] Some sentences will be lowercased incorrectly; please ignore this.</b></p>
+                            <p class="mb-2" style="margin-left: 40px"><b>[Important!] You will not be able to change your answers to Part 1 after moving on to Part 2.</b></p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- INSTRUCTIONS END -->
+            <!-- MAIN EXAMPLE START -->
+            <div class="card">
+                <div class="card-header" id="mainExampleHeading">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#mainExample" aria-expanded="true" aria-controls="mainExample">
+                            Main Example (click to expand/collapse)
+                        </button>
+                    </h5>
+                </div>
+                <div class="collapse" id="mainExample" aria-labelledby="mainExampleHeading" data-parent="#hitinfo">
+                    <div class="card-body">
+                        <div class="card-content col-12">
+                            <!-- EXAMPLE MACRO START -->
+
+                            <!-- EXAMPLE MACRO END -->
+
+                            <br>
+                            <div style="border: 5px solid #00aeef; padding: 10px 20px 10px 20px;"><b>Part 1:</b> Please read the below statement and answer the following questions:
+                            </div>
+                            <br>
+                            <div style="border: 0px solid #000; padding: 10px 20px 10px 20px;"><b>people keep furniture, such as lanterns, at their houses for personal use in their daily living.</b></div>
+
+                            <div id="mainExample-1" class="question">
+                                <div class="question-header question-choice-container pl-5 mb-2 pt-2 pb-2 border-bottom">
+                                    <div class="row row-12 pl-3 pt-2">
+                                        <strong>1) How factual is this statement? </strong>
+                                    </div>
+                                    <div class="row-12 pt-1 btn-group-container col-5">
+                                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                            <label class="btn btn-secondary btn-sm" for="-1">
+                                                <input class="btm-info" type="radio" name="me1_valid" id="me1_valid_1" autocomplete="off" value="-1" required>Generally False
+                                            </label>
+                                            <label class="btn btn-secondary btn-sm" for="0">
+                                                <input class="btm-info" type="radio" name="me1_valid" id="me1_valid_2" autocomplete="off" value="0" required>Sometimes or Partially True
+                                            </label>
+                                            <label class="btn btn-secondary btn-sm" for="1">
+                                                <input class="btm-info" type="radio" name="me1_valid" id="me1_valid_3" autocomplete="off" value="1" required>Generally True
+                                            </label>
+                                            <label class="btn btn-secondary btn-sm" for="-9">
+                                                <input class="btm-info" type="radio" name="me1_valid" id="me1_valid_4" autocomplete="off" value="-9" required>Need More Information to Judge
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    This statement is
+                                        <button type="button" class="btn btn-secondary btn-sm btm-info one-background">Generally True</button>.
+                                </div>
+                            </div>
+
+                            <div id="mainExample-2" class="question">
+                                <div class="question-header question-choice-container pl-5 mb-2 pt-2 pb-2 border-bottom">
+                                    <div class="row row-12 pl-3 pt-2">
+                                        <strong>2) Is this statement grammatical?</strong>
+                                    </div>
+                                    <div class="row-12 pt-1 btn-group-container col-5">
+                                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                            <label class="btn btn-secondary btn-sm" for="-1">
+                                                <input class="btm-info" type="radio" name="me2_valid" id="me2_valid_2" autocomplete="off" value="-1" required>No
+                                            </label>
+                                            <label class="btn btn-secondary btn-sm" for="1">
+                                                <input class="btm-info" type="radio" name="me2_valid" id="me2_valid_4" autocomplete="off" value="1" required>Yes
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    The correct answer is
+                                        <button type="button" class="btn btn-secondary btn-sm btm-info one-background">Yes</button>.
+                                </div>
+                            </div>
+
+                            <br>
+                            <div style="border: 5px solid #00aeef; padding: 10px 20px 10px 20px;"><b>Part 2:</b> Please read the instance that the statement explains and answer the following questions:</div>
+                            <br>
+                            <div style="border: 0px solid #000; padding: 10px 20px 10px 20px;"><span class="concept_a">Question:</span> <b>If a lantern is not for sale, where is it likely to be?</b><br>
+                                <span class="concept_c">Answer:</span> <b>house</b><br>
+                                <span class="concept_d">Explanation:</span> <b>people keep furniture, such as lanterns, at their houses for personal use in their daily living.</b>
+                            </div>
+
+                            <div id="mainExample-3" class="question">
+                                <div class="question-header question-choice-container pl-5 mb-2 pt-2 pb-2 border-bottom">
+                                    <div class="row row-12 pl-3 pt-2">
+                                        <strong>3) Does the <span class="concept_d">Explanation</span> provide new facts, information, or reasoning not stated in the <span class="concept_a">Question</span> and <span class="concept_c">Answer</span>?&nbsp; </strong>
+                                <button type="button" style="font-size:14px;" onclick='alert("An explanation that does not provide new facts simply restates the question and the answer together in a sentence. For example, for the question \"A bald eagle flies over St. Paul, where is it?\" and the answer \"Minnesota\", the explanation \"The bald eagle flies over Minnesota\" adds no new facts, information, or reasoning. By contrast, the explanation \"St. Paul is a county in Minnesota\" does.")'>Examples</button></strong>
+                                    </div>
+                                    <div class="row-12 pt-1 btn-group-container col-5">
+                                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                            <label class="btn btn-secondary btn-sm" for="-1">
+                                                <input class="btm-info" type="radio" name="me3_valid" id="me3_valid_1" autocomplete="off" value="-1" required>No
+                                            </label>
+                                            <label class="btn btn-secondary btn-sm" for="1">
+                                                <input class="btm-info" type="radio" name="me3_valid" id="me3_valid_3" autocomplete="off" value="1" required>Yes
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    The correct answer is
+                                        <button type="button" class="btn btn-secondary btn-sm btm-info one-background">Yes</button>, because the explanation introduces the fact that lanterns are a type of furniture, and that people do not usually keep furniture in their house for selling.
+                                </div>
+                            </div>
+
+                            <div id="mainExample-4" class="question" style="padding: 0px 0px 0px 30px">
+                                <div class="question-header question-choice-container pl-5 mb-2 pt-2 pb-2 border-bottom">
+                                    <div class="row row-12 pl-3 pt-2">
+                                        <strong>4) Is the new information <em>relevant</em> to justifying the <span class="concept_c">Answer</span>?&nbsp; </strong>
+                                    <button type="button" style="font-size:14px;" onclick='alert("Contains at least one statement that supports the answer. For example, for the question \"A bald eagle flies over St. Paul, where is it?\" and the answer \"Minnesota\", the explanation \"St. Paul is a county in Minnesota\" is relevant to justifying the answer. The explanation \"The eagle is in the sky\" is not.")'>Examples</button></strong>
+                                    </div>
+                                    <div class="row-12 pt-1 btn-group-container col-5">
+                                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                            <label class="btn btn-secondary btn-sm" for="-1">
+                                                <input class="btm-info" type="radio" name="me4_valid" id="me4_valid_1" autocomplete="off" value="-1" required>No
+                                            </label>
+                                            <label class="btn btn-secondary btn-sm" for="1">
+                                                <input class="btm-info" type="radio" name="me4_valid" id="me4_valid_3" autocomplete="off" value="1" required>Yes
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    The correct answer is
+                                        <button type="button" class="btn btn-secondary btn-sm btm-info one-background">Yes</button>.
+                                </div>
+                            </div>
+
+                            <div id="mainExample-5" class="question" style="padding: 0px 0px 0px 30px">
+                                <div class="question-header question-choice-container pl-5 mb-2 pt-2 pb-2 border-bottom">
+                                    <div class="row row-12 pl-3 pt-2">
+                                        <strong>5) How much information does the <span class="concept_d">Explanation</span> have to justify the <span class="concept_c">Answer</span>?&nbsp; </strong>
+                                    <button type="button" style="font-size:14px;" onclick='alert("For the question \"A bald eagle flies over St. Paul, where is it?\" and the answer \"Minnesota\", the explanation \"St. Paul is in the United States\" does not have enough information (it is missing \"Minnesota is also in the United States\" to be complete). An explanation that contains too much information has something unnecesary, such as \"St. Paul is a county in Minnesota. Minnesota is state in the United States.\". The last sentence is not needed.")'>Examples</button></strong>
+                                    </div>
+                                    <div class="row-12 pt-1 btn-group-container col-5">
+                                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                            <label class="btn btn-secondary btn-sm" for="-1">
+                                                <input class="btm-info" type="radio" name="me5_valid" id="me5_valid_1" autocomplete="off" value="-1" required>Not Enough
+                                            </label>
+                                            <label class="btn btn-secondary btn-sm" for="1">
+                                                <input class="btm-info" type="radio" name="me5_valid" id="me5_valid_2" autocomplete="off" value="0" required>Enough
+                                            </label>
+                                            <label class="btn btn-secondary btn-sm" for="-2">
+                                                <input class="btm-info" type="radio" name="me5_valid" id="me5_valid_3" autocomplete="off" value="1" required>Too Much
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    The correct answer is
+                                        <button type="button" class="btn btn-secondary btn-sm btm-info one-background">Enough</button>.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <!-- MAIN EXAMPLE END -->
+            <!-- MORE EXAMPLES START -->
+            <div class="card">
+                <div class="card-header" id="examplesHeading">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#examples" aria-expanded="true" aria-controls="examples">
+                            More Examples (click to expand/collapse)
+                        </button>
+                    </h5>
+                </div>
+                <div class="collapse" id="examples" aria-labelledby="examplesHeading" data-parent="#hitinfo">
+                    <div class="card-body">
+                        <div class="card-content col-12">
+                            <!-- EXAMPLE MACRO START -->
+
+                            <!-- EXAMPLE MACRO END -->
+
+                            <br>
+                            <div style="border: 5px solid #00aeef; padding: 10px 20px 10px 20px;"><b>Part 1:</b> Please read the below statement and answer the following questions:
+                            </div>
+                            <div id="ex1" class="question">
+                                <div class="question-header question-choice-container pl-5 mb-2 pt-2 pb-2 border-bottom">
+                                    <div class="row row-12 pl-3 pt-2">
+                                        <strong>1) How factual is this statement? </strong>
+                                    </div>
+                                    <div class="row-12 pt-1 btn-group-container col-5">
+                                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                            <label class="btn btn-secondary btn-sm" for="-1">
+                                                <input class="btm-info" type="radio" name="ex1_valid" id="ex1_valid_1" autocomplete="off" value="-1" required>Generally False
+                                            </label>
+                                            <label class="btn btn-secondary btn-sm" for="0">
+                                                <input class="btm-info" type="radio" name="ex1_valid" id="ex1_valid_2" autocomplete="off" value="0" required>Sometimes or Partially True
+                                            </label>
+                                            <label class="btn btn-secondary btn-sm" for="1">
+                                                <input class="btm-info" type="radio" name="ex1_valid" id="ex1_valid_3" autocomplete="off" value="1" required>Generally True
+                                            </label>
+                                            <label class="btn btn-secondary btn-sm" for="-9">
+                                                <input class="btm-info" type="radio" name="ex1_valid" id="ex1_valid_4" autocomplete="off" value="-9" required>Need More Information to Judge
+                                            </label>
+                                        </div>
+                                    </div>
+
+                                    <li><div class="row"><div> <span class="concept_d">Explanation #1:</span> <b>tissues allow you to blow your nose when sick.</b> <br> The correct answer is
+                                        <button type="button" class="btn btn-secondary btn-sm btm-info one-background">Generally True</button>.
+                                    </div></div></p></li>
+
+                                    <li><div class="row"><div> <span class="concept_d">Explanation #2:</span> <b>people only use tissues to blow their nose.</b> <br> The correct answer is
+                                        <button type="button" class="btn btn-secondary btn-sm btm-info negOne-background">Generally False</button>
+                                        because the word "only" is too strong. People can use handkerchiefs or toilet paper, etc. to blow their nose.
+                                    </div></div></p></li>
+
+                                    <li><div class="row"><div> <span class="concept_d">Explanation #3:</span> <b>john needed a tissue because he had a cold.</b> <br> The correct answer is
+                                        <button type="button" class="btn btn-secondary btn-sm btm-info negNine-background">Needs More Information to Judge</button>
+                                        because it refers to a person (John), so more context is needed to assess the truthfulness of this statement (whether John had a cold).
+                                    </div></div></p></li>
+
+                                    <li><div class="row"><div> <span class="concept_d">Explanation #4:</span> <b>john needed a tissue because he had a cold, and tissues allow you to blow your nose when sick.</b> <br> The correct answer is
+                                        <button type="button" class="btn btn-secondary btn-sm btm-info zero-background">Sometimes or Partially True</button>. More information is needed to judge the first clause ("john needed a tissue because he had a cold"), and the second clause is generally true ("tissues allow you to blow your nose when sick").
+                                    </div></div></p></li>
+                                </div>
+                            </div>
+
+                            <div id="ex2" class="question mt-4">
+                                <div class="question-header question-choice-container pl-5 mb-2 pt-2 pb-2 border-bottom">
+                                    <div class="row row-12 pl-3 pt-2">
+                                        <strong>2) Is this statement grammatical?</strong>
+                                    </div>
+                                    <div class="row-12 pt-1 btn-group-container col-5">
+                                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                            <label class="btn btn-secondary btn-sm" for="-1">
+                                                <input class="btm-info" type="radio" name="ex2_valid" id="ex2_valid_1" autocomplete="off" value="-1" required>No
+                                            </label>
+                                            <label class="btn btn-secondary btn-sm" for="1">
+                                                <input class="btm-info" type="radio" name="ex2_valid" id="ex2_valid_3" autocomplete="off" value="1" required>Yes
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <li><div class="row"><div> <span class="concept_d">Explanation #1:</span> <b>tissues allow you to blow your nose when sick.</b> <br> The correct answer is
+                                        <button type="button" class="btn btn-secondary btn-sm btm-info one-background">Yes</button>
+                                    because this statement does not have any spelling or grammatical mistakes and is easy to understand.</div></div></p></li>
+
+                                    <li><div class="row"><div> <span class="concept_d">Explanation #2:</span> <b>tissues is designed to help your nose blow.</b> <br> The correct answer is
+                                        <button type="button" class="btn btn-secondary btn-sm btm-info negOne-background">No</button>
+                                    because this statement is ungrammatical.</div></div></p></li>
+                                </div>
+                            </div>
+
+                            <br>
+                            <div style="border: 5px solid #00aeef; padding: 10px 20px 10px 20px;"><b>Part 2:</b> Please read the instance that the statement explains and answer the following questions:</div>
+                            <br>
+                            <div style="border: 0px solid #000; padding: 10px 20px 10px 20px;"><span class="concept_a">Question:</span> <b>John had a cold and his nose was running. He needed what from the store?</b><br>
+                                <span class="concept_c">Answer:</span> <b>tissues</b><br>
+                            </div>
+
+                            <div id="ex3" class="question">
+                                <div class="question-header question-choice-container pl-5 mb-2 pt-2 pb-2 border-bottom">
+                                    <div class="row row-12 pl-3 pt-2">
+                                        <strong>3) Does the <span class="concept_d">Explanation</span> provide new facts, information, or reasoning not stated in the <span class="concept_a">Question</span> and <span class="concept_c">Answer</span>?&nbsp; </strong>
+                                        <button type="button" style="font-size:14px;" onclick='alert("An explanation that does not provide new facts simply restates the question and the answer together in a sentence. For example, for the question \"A bald eagle flies over St. Paul, where is it?\" and the answer \"Minnesota\", the explanation \"The bald eagle flies over Minnesota\" adds no new facts, information, or reasoning. By contrast, the explanation \"St. Paul is a county in Minnesota\" does.")'>Examples</button></strong>
+                                    </div>
+                                    <div class="row-12 pt-1 btn-group-container col-5">
+                                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                            <label class="btn btn-secondary btn-sm" for="-1">
+                                                <input class="btm-info" type="radio" name="ex3_valid" id="ex3_valid_1" autocomplete="off" value="-1" required>No
+                                            </label>
+                                            <label class="btn btn-secondary btn-sm" for="1">
+                                                <input class="btm-info" type="radio" name="ex3_valid" id="ex3_valid_3" autocomplete="off" value="1" required>Yes
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <li><div class="row"><div> <span class="concept_d">Explanation #1:</span> <b>john needed a tissue because he had a cold.</b> <br> The correct answer is
+                                        <button type="button" class="btn btn-secondary btn-sm btm-info negOne-background">No</button> because the explanation simply restates the <span class="concept_a">Question</span> + <span class="concept_c">Answer</span>.</div></div></p></li>
+
+                                        <li><div class="row"><div> <span class="concept_d">Explanation #2:</span> <b>tissues allow you to blow your nose when sick.</b> <br> The correct answer is
+                                            <button type="button" class="btn btn-secondary btn-sm btm-info one-background">Yes</button> because the explanation introduces the facts that a runny nose often means that you needs to blow it, and that this is what tissues are used for (both new facts not stated in the question/answer).</div></div></p></li>
+                                </div>
+                            </div>
+
+                            <div id="ex4" class="question" style="padding: 0px 0px 0px 30px">
+                                <div class="question-header question-choice-container pl-5 mb-2 pt-2 pb-2 border-bottom">
+                                    <div class="row row-12 pl-3 pt-2">
+                                        <strong>4) Is the new information <em>relevant</em> to justifying the <span class="concept_c">Answer</span>?&nbsp; </strong>
+                                        <button type="button" style="font-size:14px;" onclick='alert("Contains at least one statement that supports the answer. For example, for the question \"A bald eagle flies over St. Paul, where is it?\" and the answer \"Minnesota\", the explanation \"St. Paul is a county in Minnesota\" is relevant to justifying the answer. The explanation \"The eagle is in the sky\" is not.")'>Examples</button></strong>
+                                    </div>
+                                    <div class="row-12 pt-1 btn-group-container col-5">
+                                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                            <label class="btn btn-secondary btn-sm" for="-1">
+                                                <input class="btm-info" type="radio" name="ex4_valid" id="ex4_valid_1" autocomplete="off" value="-1" required>No
+                                            </label>
+                                            <label class="btn btn-secondary btn-sm" for="1">
+                                                <input class="btm-info" type="radio" name="ex4_valid" id="ex4_valid_3" autocomplete="off" value="1" required>Yes
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <li><div class="row"><div> <span class="concept_d">Explanation #1:</span> <b>tissues allow you to blow your nose when sick.</b> <br> The correct answer is
+                                        <button type="button" class="btn btn-secondary btn-sm btm-info one-background">Yes</button> because this statement explains the relationship between tissues and a runny nose.</div></div></p></li>
+                                    <li><div class="row"><div> <span class="concept_d">Explanation #2:</span> <b>a runny nose is often caused by allergies or a cold.</b> <br> The correct answer is
+                                        <button type="button" class="btn btn-secondary btn-sm btm-info negOne-background">No</button> because this does not explain why ''tissues'' is the answer. It provides irrelevant information.</div></div></p></li>
+                                    <li><div class="row"><div> <span class="concept_d">Explanation #3:</span> <b>tissues are helpful for cleaning up messes.</b> <br> The correct answer is
+                                        <button type="button" class="btn btn-secondary btn-sm btm-info negOne-background">No</button>. Even though this statement is factual, it does not explain specifically why John needs tissues (because of his cold and/or runny nose). The question does not mention any messes.</div></div></p></li>
+                                    <li><div class="row"><div> <span class="concept_d">Explanation #4:</span> <b>handkerchiefs allow you to blow your nose when sick.</b> <br> The correct answer is
+                                        <button type="button" class="btn btn-secondary btn-sm btm-info negOne-background">No</button>. Even though this statement is factual, it does not explain the answer choice "tissues". If the answer choice was "handkerchief", then this would have been a relevant explanation.</div></div></p></li>
+                                </div>
+                            </div>
+
+                            <div id="ex5" class="question" style="padding: 0px 0px 0px 30px">
+                                <div class="question-header question-choice-container pl-5 mb-2 pt-2 pb-2 border-bottom">
+                                    <div class="row row-12 pl-3 pt-2">
+                                        <strong>5) How much information does the <span class="concept_d">Explanation</span> have to justify the <span class="concept_c">Answer</span>?&nbsp; </strong>
+                                        <button type="button" style="font-size:14px;" onclick='alert("For the question \"A bald eagle flies over St. Paul, where is it?\" and the answer \"Minnesota\", the explanation \"St. Paul is in the United States\" does not have enough information (it is missing \"Minnesota is also in the United States\" to be complete). An explanation that contains too much information has something unnecesary, such as \"St. Paul is a county in Minnesota. Minnesota is state in the United States.\". The last sentence is not needed.")'>Examples</button></strong>
+                                    </div>
+                                    <div class="row-12 pt-1 btn-group-container col-5">
+                                        <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                            <label class="btn btn-secondary btn-sm" for="-1">
+                                                <input class="btm-info" type="radio" name="ex5_valid" id="ex5_valid_1" autocomplete="off" value="-1" required>Not Enough
+                                            </label>
+                                            <label class="btn btn-secondary btn-sm" for="1">
+                                                <input class="btm-info" type="radio" name="ex5_valid" id="ex5_valid_2" autocomplete="off" value="0" required>Enough
+                                            </label>
+                                            <label class="btn btn-secondary btn-sm" for="-2">
+                                                <input class="btm-info" type="radio" name="ex5_valid" id="ex5_valid_3" autocomplete="off" value="1" required>Too Much
+                                            </label>
+                                        </div>
+                                    </div>
+                                    <li><div class="row"><div> <span class="concept_d">Explanation #1:</span> <b>tissues allow you to blow your nose.</b> <br> The correct answer is
+                                        <button type="button" class="btn btn-secondary btn-sm btm-info negOne-background">Not Enough Information</button> because this explanation does not contain enough information to explain the relationship between "blowing your nose" and a "runny nose".</div></div></p></li>
+
+                                        <li><div class="row"><div> <span class="concept_d">Explanation #2:</span> <b>runny noses often need to be blown. tissues allow you to blow your nose.</b>  <br> The correct answer is
+                                            <button type="button" class="btn btn-secondary btn-sm btm-info one-background">Enough Information</button> because this explanation provides enough information to explain why tissues are needed.</div></div></p></li>
+
+                                        <li><div class="row"><div> <span class="concept_d">Explanation #3:</span> <b>unny noses often need to be blown. tissues allow you to blow your nose. a runny nose is often caused by allergies or a cold.</b> <br> The correct answer is
+                                            <button type="button" class="btn btn-secondary btn-sm btm-info negTwo-background">Too Much Information</button> because the last sentence is unnecessary. The question has already established that John has both a cold and a runny nose.</div></div></p></li>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            <!-- MORE EXAMPLES END -->
+        </div>
+        <!-- ACCORDION END -->
+
+        <!-- MTURK INPUT START -->
+        <div class="col-12 mt-3 mb-1 border-top">
+
+            <form name='mturk_form' method='post' id='mturk_form' action='https://www.mturk.com/mturk/externalSubmit'>
+                <input type='hidden' value='' name='assignmentId' id='assignmentId'/>
+                <input type='hidden' name='ee' id='ee'/>
+
+                <!-- QUESTION MACRO START -->
+
+                <!-- GOAL CATEGORY MACRO END -->
+
+                <!-- GOAL CAT START -->
+
+                <div id="Part1Div" name="Part1Div" style="display:show">
+                    <br>
+                    <div style="border: 5px solid #00aeef; padding: 10px 20px 10px 20px;"><b>Part 1:</b> Please read the below statement and answer the following questions: <br>
+                    </div>
+                    <br>
+                    <div style="border: 0px solid #000; padding: 10px 20px 10px 20px;"><b>${predicted_explanation}</b></div>
+
+                    <div id="question-1" class="question">
+                        <div class="question-header question-choice-container pl-5 mb-2 pt-2 pb-2 border-bottom">
+                            <div class="row row-12 pl-3 pt-2">
+                                <strong>1) How factual is this statement? </strong>
+                            </div>
+                            <div class="row-12 pt-1 btn-group-container col-5">
+                                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <label class="btn btn-secondary btn-sm" for="-1">
+                                        <input class="required" type="radio" name="q1_valid" id="q1_valid_1" autocomplete="off" value="-1" required>Generally False
+                                    </label>
+                                    <label class="btn btn-secondary btn-sm" for="0">
+                                        <input class="required" type="radio" name="q1_valid" id="q1_valid_2" autocomplete="off" value="0" required>Sometimes or Partially True
+                                    </label>
+                                    <label class="btn btn-secondary btn-sm" for="1">
+                                        <input class="required" type="radio" name="q1_valid" id="q1_valid_3" autocomplete="off" value="1" required>Generally True
+                                    </label>
+                                    <label class="btn btn-secondary btn-sm" for="-9">
+                                        <input class="required" type="radio" name="q1_valid" id="q1_valid_4" autocomplete="off" value="-9" required>Needs More Information to Judge
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="question-2" class="question">
+                        <div class="question-header question-choice-container pl-5 mb-2 pt-2 pb-2 border-bottom">
+                            <div class="row row-12 pl-3 pt-2">
+                                <strong>2) Is this statement grammatical?</strong>
+                            </div>
+                            <div class="row-12 pt-1 btn-group-container col-5">
+                                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <label class="btn btn-secondary btn-sm" for="-1">
+                                        <input class="required" type="radio" name="q2_valid" id="q2_valid_2" autocomplete="off" value="-1" required>No
+                                    </label>
+                                    <label class="btn btn-secondary btn-sm" for="1">
+                                        <input class="required" type="radio" name="q2_valid" id="q2_valid_4" autocomplete="off" value="1" required>Yes
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <button type="button" class="partButton" name="partButton" id="partButton"> Submit Part 1 </button>
+                </div>
+
+                <div id="TestsDiv" style="display:none">
+                    <br>
+                    <div style="border: 5px solid #00aeef; padding: 10px 20px 10px 20px;"><b>Part 2:</b> Please read the instance that the statement explains and answer the following questions:</div>
+                    <br>
+                    <div style="border: 0px solid #000; padding: 10px 20px 10px 20px;"><span class="concept_a">Question:</span> <b>${question}</b><br>
+                        <span class="concept_c">Answer:</span> <b>${gold_label}</b><br>
+                        <span class="concept_d">Explanation:</span> <b>${predicted_explanation}</b>
+                    </div>
+
+                    <div id="question-3" class="question">
+                        <div class="question-header question-choice-container pl-5 mb-2 pt-2 pb-2 border-bottom">
+                            <div class="row row-12 pl-3 pt-2">
+                                <strong>3) Does the <span class="concept_d">Explanation</span> provide new facts, information, or reasoning not stated in the <span class="concept_a">Question</span> and <span class="concept_c">Answer</span>?&nbsp; </strong>
+                                <button type="button" style="font-size:14px;" onclick='alert("An explanation that does not provide new facts simply restates the question and the answer together in a sentence. For example, for the question \"A bald eagle flies over St. Paul, where is it?\" and the answer \"Minnesota\", the explanation \"The bald eagle flies over Minnesota\" adds no new facts, information, or reasoning. By contrast, the explanation \"St. Paul is a county in Minnesota\" does.")'>Examples</button></strong>
+                            </div>
+                            <div class="row-12 pt-1 btn-group-container col-5">
+                                <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                    <label class="btn btn-secondary btn-sm" for="-1">
+                                        <input class="required" type="radio" name="q3_valid" id="q3_valid_1" autocomplete="off" value="-1" required>No
+                                    </label>
+                                    <label class="btn btn-secondary btn-sm" for="1">
+                                        <input class="required" type="radio" name="q3_valid" id="q3_valid_3" autocomplete="off" value="1" required>Yes
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="JustifyDiv" name="JustifyDiv" style="display:none; padding: 0px 0px 0px 30px">
+                        <div id="question-4" class="question">
+                            <div class="question-header question-choice-container pl-5 mb-2 pt-2 pb-2 border-bottom">
+                                <div class="row row-12 pl-3 pt-2">
+                                    <strong>4) Is the new information <em>relevant</em> to justifying the <span class="concept_c">Answer</span>?&nbsp; </strong>
+                                    <button type="button" style="font-size:14px;" onclick='alert("Contains at least one statement that supports the answer. For example, for the question \"A bald eagle flies over St. Paul, where is it?\" and the answer \"Minnesota\", the explanation \"St. Paul is a county in Minnesota\" is relevant to justifying the answer. The explanation \"The eagle is in the sky\" is not.")'>Examples</button></strong>
+                                </div>
+                                <div class="row-12 pt-1 btn-group-container col-5">
+                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                        <label class="btn btn-secondary btn-sm" for="-1">
+                                            <input class="required" type="radio" name="q4_valid" id="q4_valid_1" autocomplete="off" value="-1" required>No
+                                        </label>
+                                        <label class="btn btn-secondary btn-sm" for="1">
+                                            <input class="required" type="radio" name="q4_valid" id="q4_valid_3" autocomplete="off" value="1" required>Yes
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="InfoDiv" name="InfoDiv" style="display:none; padding: 0px 0px 0px 30px">
+                        <div id="question-5" class="question">
+                            <div class="question-header question-choice-container pl-5 mb-2 pt-2 pb-2 border-bottom">
+                                <div class="row row-12 pl-3 pt-2">
+                                    <strong>5) How much information does the <span class="concept_d">Explanation</span> have to justify the <span class="concept_c">Answer</span>?&nbsp; </strong>
+                                    <button type="button" style="font-size:14px;" onclick='alert("For the question \"A bald eagle flies over St. Paul, where is it?\" and the answer \"Minnesota\", the explanation \"St. Paul is in the United States\" does not have enough information (it is missing \"Minnesota is also in the United States\" to be complete). An explanation that contains too much information has something unnecesary, such as \"St. Paul is a county in Minnesota. Minnesota is state in the United States.\". The last sentence is not needed.")'>Examples</button></strong>
+                                </div>
+                                <div class="row-12 pt-1 btn-group-container col-5">
+                                    <div class="btn-group btn-group-toggle" data-toggle="buttons">
+                                        <label class="btn btn-secondary btn-sm" for="-1">
+                                            <input class="required" type="radio" name="q5_valid" id="q5_valid_1" autocomplete="off" value="-1" required>Not Enough
+                                        </label>
+                                        <label class="btn btn-secondary btn-sm" for="1">
+                                            <input class="required" type="radio" name="q5_valid" id="q5_valid_2" autocomplete="off" value="0" required>Enough
+                                        </label>
+                                        <label class="btn btn-secondary btn-sm" for="-2">
+                                            <input class="required" type="radio" name="q5_valid" id="q5_valid_3" autocomplete="off" value="1" required>Too Much
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                <!-- GOAL CAT END -->
+
+                <!-- OPTIONAL FEEDBACK -->
+                <div class="row mt-5">
+                    <div class="col-8 offset-2 col-lg-6 offset-lg-3">
+                        <p>(Optional) Please let us know if anything was unclear, if you experienced any issues, or if you have any other feedback for us.</p>
+                        <textarea id="feedback" name="feedback" rows=3></textarea>
+                    </div>
+                </div>
+
+                <!-- SUBMIT BUTTON -->
+                <div class="row mt-5">
+                    <div class="col-2 offset-5">
+                        <input id="submitButton" onclick="getnext()" type="submit" value="Submit Part 2">
+                    </div>
+                </div>
+
+            </form>
+            <script language='Javascript'>turkSetAssignmentID();</script>
+        </div>
+        <!-- MTURK INPUT END -->
+
+    </div>
+<!-- HIT END -->
+
+<!-- BOOSTRAP JS -->
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+
+<!-- HITPUB JS -->
+<script id="hitpub_js">
+    // TimeMe.js
+    (function () { var e, t; e = this, t = function () { var r = { startStopTimes: {}, idleTimeoutMs: 3e4, currentIdleTimeMs: 0, checkStateRateMs: 250, active: !1, idle: !1, currentPageName: "default-page-name", timeElapsedCallbacks: [], userLeftCallbacks: [], userReturnCallbacks: [], trackTimeOnElement: function (e) { var t = document.getElementById(e); t && (t.addEventListener("mouseover", function () { r.startTimer(e) }), t.addEventListener("mousemove", function () { r.startTimer(e) }), t.addEventListener("mouseleave", function () { r.stopTimer(e) }), t.addEventListener("keypress", function () { r.startTimer(e) }), t.addEventListener("focus", function () { r.startTimer(e) })) }, getTimeOnElementInSeconds: function (e) { var t = r.getTimeOnPageInSeconds(e); return t || 0 }, startTimer: function (e, t) { if (e || (e = r.currentPageName), void 0 === r.startStopTimes[e]) r.startStopTimes[e] = []; else { var n = r.startStopTimes[e], i = n[n.length - 1]; if (void 0 !== i && void 0 === i.stopTime) return } r.startStopTimes[e].push({ startTime: t || new Date, stopTime: void 0 }), r.active = !0, r.idle = !1 }, stopAllTimers: function () { for (var e = Object.keys(r.startStopTimes), t = 0; t < e.length; t++)r.stopTimer(e[t]) }, stopTimer: function (e, t) { e || (e = r.currentPageName); var n = r.startStopTimes[e]; void 0 !== n && 0 !== n.length && (void 0 === n[n.length - 1].stopTime && (n[n.length - 1].stopTime = t || new Date), r.active = !1) }, getTimeOnCurrentPageInSeconds: function () { return r.getTimeOnPageInSeconds(r.currentPageName) }, getTimeOnPageInSeconds: function (e) { var t = r.getTimeOnPageInMilliseconds(e); return void 0 === t ? void 0 : t / 1e3 }, getTimeOnCurrentPageInMilliseconds: function () { return r.getTimeOnPageInMilliseconds(r.currentPageName) }, getTimeOnPageInMilliseconds: function (e) { var t = r.startStopTimes[e]; if (void 0 !== t) { for (var n = 0, i = 0; i < t.length; i++) { var s = t[i].startTime, o = t[i].stopTime; void 0 === o && (o = new Date), n += o - s } return Number(n) } }, getTimeOnAllPagesInSeconds: function () { for (var e = [], t = Object.keys(r.startStopTimes), n = 0; n < t.length; n++) { var i = t[n], s = r.getTimeOnPageInSeconds(i); e.push({ pageName: i, timeOnPage: s }) } return e }, setIdleDurationInSeconds: function (e) { var t = parseFloat(e); if (!1 !== isNaN(t)) throw { name: "InvalidDurationException", message: "An invalid duration time (" + e + ") was provided." }; return r.idleTimeoutMs = 1e3 * e, this }, setCurrentPageName: function (e) { return r.currentPageName = e, this }, resetRecordedPageTime: function (e) { delete r.startStopTimes[e] }, resetAllRecordedPageTimes: function () { for (var e = Object.keys(r.startStopTimes), t = 0; t < e.length; t++)r.resetRecordedPageTime(e[t]) }, resetIdleCountdown: function () { r.idle && r.triggerUserHasReturned(), r.idle = !1, r.currentIdleTimeMs = 0 }, callWhenUserLeaves: function (e, t) { this.userLeftCallbacks.push({ callback: e, numberOfTimesToInvoke: t }) }, callWhenUserReturns: function (e, t) { this.userReturnCallbacks.push({ callback: e, numberOfTimesToInvoke: t }) }, triggerUserHasReturned: function () { if (!r.active) for (var e = 0; e < this.userReturnCallbacks.length; e++) { var t = this.userReturnCallbacks[e], n = t.numberOfTimesToInvoke; (isNaN(n) || void 0 === n || 0 < n) && (t.numberOfTimesToInvoke -= 1, t.callback()) } r.startTimer() }, triggerUserHasLeftPage: function () { if (r.active) for (var e = 0; e < this.userLeftCallbacks.length; e++) { var t = this.userLeftCallbacks[e], n = t.numberOfTimesToInvoke; (isNaN(n) || void 0 === n || 0 < n) && (t.numberOfTimesToInvoke -= 1, t.callback()) } r.stopAllTimers() }, callAfterTimeElapsedInSeconds: function (e, t) { r.timeElapsedCallbacks.push({ timeInSeconds: e, callback: t, pending: !0 }) }, checkState: function () { for (var e = 0; e < r.timeElapsedCallbacks.length; e++)r.timeElapsedCallbacks[e].pending && r.getTimeOnCurrentPageInSeconds() > r.timeElapsedCallbacks[e].timeInSeconds && (r.timeElapsedCallbacks[e].callback(), r.timeElapsedCallbacks[e].pending = !1); !1 === r.idle && r.currentIdleTimeMs > r.idleTimeoutMs ? (r.idle = !0, r.triggerUserHasLeftPage()) : r.currentIdleTimeMs += r.checkStateRateMs }, visibilityChangeEventName: void 0, hiddenPropName: void 0, listenForVisibilityEvents: function () { void 0 !== document.hidden ? (r.hiddenPropName = "hidden", r.visibilityChangeEventName = "visibilitychange") : void 0 !== document.mozHidden ? (r.hiddenPropName = "mozHidden", r.visibilityChangeEventName = "mozvisibilitychange") : void 0 !== document.msHidden ? (r.hiddenPropName = "msHidden", r.visibilityChangeEventName = "msvisibilitychange") : void 0 !== document.webkitHidden && (r.hiddenPropName = "webkitHidden", r.visibilityChangeEventName = "webkitvisibilitychange"), document.addEventListener(r.visibilityChangeEventName, function () { document[r.hiddenPropName] ? r.triggerUserHasLeftPage() : r.triggerUserHasReturned() }, !1), window.addEventListener("blur", function () { r.triggerUserHasLeftPage() }), window.addEventListener("focus", function () { r.triggerUserHasReturned() }), document.addEventListener("mousemove", function () { r.resetIdleCountdown() }), document.addEventListener("keyup", function () { r.resetIdleCountdown() }), document.addEventListener("touchstart", function () { r.resetIdleCountdown() }), window.addEventListener("scroll", function () { r.resetIdleCountdown() }), setInterval(function () { r.checkState() }, r.checkStateRateMs) }, websocket: void 0, websocketHost: void 0, setUpWebsocket: function (e) { if (window.WebSocket && e) { var t = e.websocketHost; try { r.websocket = new WebSocket(t), window.onbeforeunload = function () { r.sendCurrentTime(e.appId) }, r.websocket.onopen = function () { r.sendInitWsRequest(e.appId) }, r.websocket.onerror = function (e) { console && console.log("Error occurred in websocket connection: " + e) }, r.websocket.onmessage = function (e) { console && console.log(e.data) } } catch (e) { console && console.error("Failed to connect to websocket host.  Error:" + e) } } return this }, websocketSend: function (e) { r.websocket.send(JSON.stringify(e)) }, sendCurrentTime: function (e) { var t = { type: "INSERT_TIME", appId: e, timeOnPageMs: r.getTimeOnCurrentPageInMilliseconds(), pageName: r.currentPageName }; r.websocketSend(t) }, sendInitWsRequest: function (e) { var t = { type: "INIT", appId: e }; r.websocketSend(t) }, initialize: function (e) { var t = r.idleTimeoutMs || 30, n = r.currentPageName || "default-page-name", i = void 0, s = void 0; e && (t = e.idleTimeoutInSeconds || t, n = e.currentPageName || n, i = e.websocketOptions, s = e.initialStartTime), r.setIdleDurationInSeconds(t).setCurrentPageName(n).setUpWebsocket(i).listenForVisibilityEvents(), r.startTimer(void 0, s) } }; return r }, "undefined" != typeof module && module.exports ? module.exports = t() : "function" == typeof define && define.amd ? define([], function () { return e.TimeMe = t() }) : e.TimeMe = t() }).call(this);
+
+    TimeMe.initialize({
+        currentPageName: "task",
+        idleTimeoutInSeconds: 30
+    });
+
+    $(document).ready(function() {
+        $('#submitButton').click(function () {
+            try {
+                $('input[name=ee]').attr('value', TimeMe.getTimeOnCurrentPageInSeconds());
+            } catch {
+            }
+            return true;
+        });
+    });
+
+    $(document).ready(part1complete);
+    $(document).ready(show_hide);
+
+    function show_hide() {
+        $('input[name="q3_valid"]').change( function() {
+            if (this.value == 1) {
+                $("#JustifyDiv").show();
+                $("input[type='radio'][name='q4_valid']").prop('required',true);
+            } else {
+                $("#JustifyDiv").hide();
+                $("#InfoDiv").hide();
+                $("input[type='radio'][name='q4_valid']").prop('required',false);
+                $("input[type='radio'][name='q5_valid']").prop('required',false);
+            }
+        });
+        $('input[name="q4_valid"]').change( function() {
+            if (this.value == 1) {
+                $("#InfoDiv").show();
+                $("input[type='radio'][name='q5_valid']").prop('required',true);
+            } else {
+                $("#InfoDiv").hide();
+                $("input[type='radio'][name='q5_valid']").prop('required',false);
+            }
+        });
+    }
+
+    function part1complete() {
+        $('#partButton').click(function () {
+            var q1_valid_sel = $("input[type='radio'][name='q1_valid']:checked");
+            var q2_valid_sel = $("input[type='radio'][name='q2_valid']:checked");
+
+            if( q1_valid_sel.length > 0 && q2_valid_sel.length > 0) {
+                setTimeout(function() {
+                    $("#Part1Div").hide();
+                    $("#TestsDiv").show(); // show the rest
+                }, 1000);
+            } else {
+                alert("You must complete the questions in Part 1 in order to proceed.");
+            }
+
+        });
+    }
+
+</script>
